@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class BaseBallGame {
@@ -15,7 +16,7 @@ public class BaseBallGame {
 		status = Status.init();
 	}
 
-	public boolean isEndGame() {
+	public boolean isContinueGame() {
 		return !status.isPerfectStrike();
 	}
 
@@ -24,5 +25,20 @@ public class BaseBallGame {
 		IntStream.range(START_INCLUSIVE, END_EXCLUSIVE)
 			.forEach(index -> status = targetBalls.play(customBalls.getBalls().get(index), index, status));
 		return status;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		BaseBallGame that = (BaseBallGame)o;
+		return Objects.equals(status, that.status) && Objects.equals(targetBalls, that.targetBalls);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(status, targetBalls);
 	}
 }
