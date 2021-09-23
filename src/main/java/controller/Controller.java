@@ -16,7 +16,7 @@ public class Controller {
 		BaseBallGame baseBallGame = new BaseBallGame(targetBalls);
 
 		Status status = baseBallGame.play(BallsGenerator.createCustomBalls(InputVIew.inputBalls()));
-		while (baseBallGame.isEndGame()) {
+		while (baseBallGame.isContinueGame()) {
 			OutputView.printGameResult(status);
 			status = baseBallGame.play(BallsGenerator.createCustomBalls(InputVIew.inputBalls()));
 		}
