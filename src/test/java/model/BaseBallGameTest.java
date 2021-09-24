@@ -26,10 +26,10 @@ class BaseBallGameTest {
 		BaseBallGame baseBallGame = new BaseBallGame(targetBalls);
 
 		Assertions.assertAll(
-			() -> assertThat(baseBallGame.isContinueGame()).isTrue(),
+			() -> assertThat(baseBallGame.isContinue()).isTrue(),
 			() -> {
 				baseBallGame.play(targetBalls);
-				assertThat(baseBallGame.isContinueGame()).isFalse();
+				assertThat(baseBallGame.isContinue()).isFalse();
 			}
 		);
 	}
@@ -39,18 +39,18 @@ class BaseBallGameTest {
 	public void playBaseBallGame() {
 		Balls targetBalls = BallsGenerator.createCustomBalls(123);
 		BaseBallGame baseBallGame = new BaseBallGame(targetBalls);
-		Status status = baseBallGame.play(BallsGenerator.createCustomBalls(145));
+		GameResult gameResult = baseBallGame.play(BallsGenerator.createCustomBalls(145));
 
-		assertThat(status.existStrike()).isTrue();
 		Assertions.assertAll(
-			() -> assertThat(status.existStrike()).isTrue(),
+			() -> assertThat(gameResult.countStrike()).isEqualTo(1),
 			() -> {
-				Status ballStatus = baseBallGame.play(BallsGenerator.createCustomBalls(415));
-				assertThat(ballStatus.existBall()).isTrue();
+				GameResult ballResult = baseBallGame.play(BallsGenerator.createCustomBalls(415));
+				assertThat(ballResult.countBall()).isEqualTo(1);
 			},
 			() -> {
-				Status nothingStatus = baseBallGame.play(BallsGenerator.createCustomBalls(456));
-				assertThat(nothingStatus.isNothing()).isTrue();
+				GameResult nothingResult = baseBallGame.play(BallsGenerator.createCustomBalls(456));
+				assertThat(nothingResult.countStrike()).isEqualTo(0);
+				assertThat(nothingResult.countBall()).isEqualTo(0);
 			}
 		);
 	}

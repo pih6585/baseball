@@ -16,15 +16,15 @@ public class BaseBallGame {
 		status = Status.init();
 	}
 
-	public boolean isContinueGame() {
-		return !status.isPerfectStrike();
+	public boolean isContinue() {
+		return new GameResult(status).isContinueGame();
 	}
 
-	public Status play(Balls customBalls) {
+	public GameResult play(Balls customBalls) {
 		status = Status.init();
 		IntStream.range(START_INCLUSIVE, END_EXCLUSIVE)
 			.forEach(index -> status = targetBalls.play(customBalls.getBalls().get(index), index, status));
-		return status;
+		return new GameResult(status);
 	}
 
 	@Override
