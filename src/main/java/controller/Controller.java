@@ -4,7 +4,7 @@ import generator.BallsGenerator;
 
 import model.Balls;
 import model.BaseBallGame;
-import model.Status;
+import model.GameResult;
 import view.InputVIew;
 import view.OutputView;
 
@@ -15,13 +15,13 @@ public class Controller {
 
 		BaseBallGame baseBallGame = new BaseBallGame(targetBalls);
 
-		Status status = baseBallGame.play(BallsGenerator.createCustomBalls(InputVIew.inputBalls()));
-		while (baseBallGame.isContinueGame()) {
-			OutputView.printGameResult(status);
-			status = baseBallGame.play(BallsGenerator.createCustomBalls(InputVIew.inputBalls()));
+		GameResult gameResult = baseBallGame.play(BallsGenerator.createCustomBalls(InputVIew.inputBalls()));
+		while (baseBallGame.isContinue()) {
+			OutputView.printGameResult(gameResult);
+			gameResult = baseBallGame.play(BallsGenerator.createCustomBalls(InputVIew.inputBalls()));
 		}
 
-		OutputView.printGameResult(status);
+		OutputView.printGameResult(gameResult);
 
 	}
 }
