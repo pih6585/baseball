@@ -6,7 +6,6 @@ public class Status {
 
 	private static final int PLUS_NUMBER = 1;
 	private static final int ZERO_POINT = 0;
-	private static final int PERFECT_CONDITION = 3;
 
 	private final int strike;
 	private final int ball;
@@ -26,22 +25,6 @@ public class Status {
 
 	public Status ball() {
 		return new Status(strike, ball + PLUS_NUMBER);
-	}
-
-	public boolean isNothing() {
-		return strike == ZERO_POINT && ball == ZERO_POINT;
-	}
-
-	public boolean isPerfectStrike() {
-		return strike == PERFECT_CONDITION;
-	}
-
-	public boolean existStrike(){
-		return strike > ZERO_POINT;
-	}
-
-	public boolean existBall(){
-		return ball > ZERO_POINT;
 	}
 
 	public int getStrike() {

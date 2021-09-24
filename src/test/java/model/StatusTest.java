@@ -31,36 +31,4 @@ class StatusTest {
 		assertThat(status.getBall()).isEqualTo(1);
 	}
 
-	@Test
-	@DisplayName("스트라이크와 볼이 0 이면 낫싱이다.")
-	public void isNothing() {
-		Status status = Status.init();
-		assertThat(status.isNothing()).isTrue();
-	}
-
-	@Test
-	@DisplayName("스트라이크가 3개이면 퍼펙트 이다.")
-	public void isPerfectStrike() {
-		Status status = Status.init();
-		status = status.strike();
-		status = status.strike();
-		status = status.strike();
-		assertThat(status.isPerfectStrike()).isTrue();
-	}
-
-	@Test
-	@DisplayName("스트라이크가 1개라도 있으면 스트라이크가 존재한다.")
-	public void existStrike() {
-		Status status = Status.init();
-		status = status.strike();
-		assertThat(status.existStrike()).isTrue();
-	}
-
-	@Test
-	@DisplayName("볼이 1개라도 있으면 볼이 존재한다.")
-	public void existBall() {
-		Status status = Status.init();
-		status = status.ball();
-		assertThat(status.existBall()).isTrue();
-	}
 }
