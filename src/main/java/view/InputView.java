@@ -11,9 +11,9 @@ public class InputView {
 
 	private static final Scanner scanner = new Scanner(System.in);
 
-	public static int inputBalls() {
+	public static String inputBalls() {
 		System.out.println(INPUT_BALLS_MESSAGE);
-		return inputTypeInteger();
+		return scanner.nextLine();
 	}
 
 	public static int inputChoiceReGame() {
