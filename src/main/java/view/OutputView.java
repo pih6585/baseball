@@ -9,8 +9,9 @@ public class OutputView {
 	private static final String BALL_MESSAGE = "볼";
 	private static final String NOTHING_MESSAGE = "낫싱";
 	private static final String EMPTY_MESSAGE = "";
+	private static final String RE_END_GAME_MESSAGE = "게임이 종료 되었습니다.";
 	private static final int ZERO_POINT = 0;
-
+	
 	public static void printGameResult(GameResult gameResult) {
 		if (!gameResult.isNothing()) {
 			printGameReview(gameResult);
@@ -33,5 +34,9 @@ public class OutputView {
 			ballMessage = gameResult.countBall() + BALL_MESSAGE;
 		}
 		System.out.println(strikeMessage + " " + ballMessage);
+	}
+
+	public static void printEndGame() {
+		System.out.println(RE_END_GAME_MESSAGE);
 	}
 }
