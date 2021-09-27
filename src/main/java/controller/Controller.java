@@ -2,7 +2,6 @@ package controller;
 
 import generator.BallsGenerator;
 
-import model.Ball;
 import model.Balls;
 import model.BaseBallGame;
 import model.GameReStart;
