@@ -1,30 +1,39 @@
 package model;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
-import java.util.stream.IntStream;
+import java.util.stream.Collectors;
 
 public class BaseBallGame {
 
-	private static final int START_INCLUSIVE = 0;
-	private static final int END_EXCLUSIVE = 3;
+	public static final int INITIAL_PRIZE_COUNT = 0;
+	public static final int ADDITION_PRIZE_COUNT = 1;
 
-	private Status status;
 	private final Balls targetBalls;
 
 	public BaseBallGame(Balls targetBalls) {
 		this.targetBalls = targetBalls;
-		status = Status.init();
 	}
 
-	public boolean isContinue() {
-		return new GameResult(status).isContinueGame();
+	public boolean isContinue(GameResult gameResult) {
+		return gameResult.isContinueGame();
 	}
 
 	public GameResult play(Balls customBalls) {
-		status = Status.init();
-		IntStream.range(START_INCLUSIVE, END_EXCLUSIVE)
-			.forEach(index -> status = targetBalls.play(customBalls.getBalls().get(index), index, status));
-		return new GameResult(status);
+		Map<Status, Integer> results = initResult();
+		for (Ball ball : targetBalls.getBalls()) {
+			Status status = customBalls.play(ball);
+			results.computeIfPresent(status, (oldStatus, oldCount) -> oldCount + ADDITION_PRIZE_COUNT);
+		}
+		return new GameResult(results);
+	}
+
+	private Map<Status, Integer> initResult() {
+		return Status.getValues()
+			.stream()
+			.collect(
+				Collectors.toMap(status -> status, status -> INITIAL_PRIZE_COUNT, (a, b) -> b, LinkedHashMap::new));
 	}
 
 	@Override
@@ -34,11 +43,11 @@ public class BaseBallGame {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		BaseBallGame that = (BaseBallGame)o;
-		return Objects.equals(status, that.status) && Objects.equals(targetBalls, that.targetBalls);
+		return Objects.equals(targetBalls, that.targetBalls);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(status, targetBalls);
+		return Objects.hash(targetBalls);
 	}
 }

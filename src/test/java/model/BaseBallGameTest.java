@@ -2,13 +2,29 @@ package model;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import generator.BallsGenerator;
 
 class BaseBallGameTest {
+
+	public static final int INITIAL_PRIZE_COUNT = 0;
+	private Map<Status, Integer> result;
+
+	@BeforeEach
+	void setUp() {
+		result = Status.getValues()
+			.stream()
+			.collect(
+				Collectors.toMap(status -> status, status -> INITIAL_PRIZE_COUNT, (a, b) -> b, LinkedHashMap::new));
+	}
 
 	@Test
 	@DisplayName("야구게임을 생성한다.")
@@ -24,12 +40,11 @@ class BaseBallGameTest {
 	public void isEndGame() {
 		Balls targetBalls = BallsGenerator.createTargetBalls();
 		BaseBallGame baseBallGame = new BaseBallGame(targetBalls);
-
 		Assertions.assertAll(
-			() -> assertThat(baseBallGame.isContinue()).isTrue(),
+			() -> assertThat(baseBallGame.isContinue(new GameResult(result))).isTrue(),
 			() -> {
-				baseBallGame.play(targetBalls);
-				assertThat(baseBallGame.isContinue()).isFalse();
+				GameResult playResult = baseBallGame.play(targetBalls);
+				assertThat(baseBallGame.isContinue(playResult)).isFalse();
 			}
 		);
 	}
