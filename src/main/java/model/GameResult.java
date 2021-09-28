@@ -1,32 +1,37 @@
 package model;
 
+import java.util.Map;
 import java.util.Objects;
 
 public class GameResult {
 
-	private static final int ZERO_POINT = 0;
 	private static final int PERFECT_CONDITION = 3;
 
-	private final Status status;
+	private final Map<Status, Integer> result;
 
-	public GameResult(Status status) {
-		this.status = status;
+	public GameResult(Map<Status, Integer> result) {
+		this.result = result;
 	}
 
 	public boolean isNothing() {
-		return status.getStrike() == ZERO_POINT && status.getBall() == ZERO_POINT;
+		return result.get(Status.NOTHING) == PERFECT_CONDITION;
 	}
 
 	public boolean isContinueGame() {
-		return status.getStrike() != PERFECT_CONDITION;
+		return result.get(Status.STRIKE) != PERFECT_CONDITION;
 	}
 
 	public int countStrike() {
-		return status.getStrike();
+		return result.get(Status.STRIKE);
 	}
 
 	public int countBall() {
-		return status.getBall();
+		return result.get(Status.BALL);
+	}
+
+	public void addPlayStatus(Status status) {
+		int oldCount = result.get(status);
+		result.put(status, oldCount + 1);
 	}
 
 	@Override
@@ -36,11 +41,12 @@ public class GameResult {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		GameResult that = (GameResult)o;
-		return Objects.equals(status, that.status);
+		return Objects.equals(result, that.result);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(status);
+		return Objects.hash(result);
 	}
+
 }
