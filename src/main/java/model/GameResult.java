@@ -29,11 +29,6 @@ public class GameResult {
 		return result.get(Status.BALL);
 	}
 
-	public void addPlayStatus(Status status) {
-		int oldCount = result.get(status);
-		result.put(status, oldCount + 1);
-	}
-
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
