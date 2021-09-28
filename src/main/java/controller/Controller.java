@@ -27,14 +27,14 @@ public class Controller {
 
 		GameResult gameResult = baseBallGame.play(BallsGenerator.createCustomBalls(InputView.inputBalls()));
 
-		while (baseBallGame.isContinue()) {
+		while (baseBallGame.isContinue(gameResult)) {
 			OutputView.printGameResult(gameResult);
 			gameResult = baseBallGame.play(BallsGenerator.createCustomBalls(InputView.inputBalls()));
 		}
 
 		OutputView.printGameResult(gameResult);
 
-		return !baseBallGame.isContinue();
+		return !baseBallGame.isContinue(gameResult);
 	}
 
 	private boolean isReGame() {
