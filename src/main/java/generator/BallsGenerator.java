@@ -17,16 +17,21 @@ public class BallsGenerator {
 	public static Balls createTargetBalls() {
 		List<Ball> balls = new ArrayList<>();
 		IntStream.range(START_INCLUSIVE, BALLS_SIZE)
-			.forEach(i -> balls.add(addBall(balls)));
+			.forEach(i -> balls.add(addBall(balls, i)));
 		return new Balls(balls);
 	}
 
-	private static Ball addBall(List<Ball> balls) {
-		Ball ball = new Ball(RandomGenerator.generateRandom());
-		if (balls.contains(ball)) {
-			return addBall(balls);
+	private static Ball addBall(List<Ball> balls, int position) {
+		int ball = RandomGenerator.generateRandom();
+		if (checkExistBall(balls, ball)) {
+			return addBall(balls, position);
 		}
-		return ball;
+		return new Ball(ball, position);
+	}
+
+	private static boolean checkExistBall(List<Ball> balls, int ball) {
+		return balls.stream()
+			.anyMatch(matchBall -> matchBall.isSameNumber(ball));
 	}
 
 	public static Balls createCustomBalls(int balls) {
@@ -40,8 +45,8 @@ public class BallsGenerator {
 	}
 
 	private static List<Ball> toList(String balls) {
-		return balls.chars()
-			.mapToObj(ch -> Ball.createBall((char)ch))
+		return IntStream.range(START_INCLUSIVE, balls.length())
+			.mapToObj(i -> Ball.createBall(balls.charAt(i), i))
 			.collect(Collectors.toList());
 	}
 

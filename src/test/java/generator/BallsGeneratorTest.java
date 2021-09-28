@@ -28,11 +28,12 @@ class BallsGeneratorTest {
 			() -> BallsGenerator.createCustomBalls(ballsNumber));
 	}
 
-	@Test
-	@DisplayName("중복된 숫자가 존재하면 예외가 발생한다.")
-	public void checkDuplication() {
+	@ParameterizedTest
+	@DisplayName("입력받은 숫자가 문자열이 포함되면 예외가 발생된다.")
+	@CsvSource(value = "!qa,z2e")
+	public void checkInputBallsType(String ballsNumber) {
 		assertThrows(IllegalArgumentException.class,
-			() -> BallsGenerator.createCustomBalls(111));
+			() -> BallsGenerator.createCustomBalls(ballsNumber));
 	}
 
 }
