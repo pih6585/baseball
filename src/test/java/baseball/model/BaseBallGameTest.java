@@ -1,4 +1,4 @@
-package model;
+package baseball.model;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -11,7 +11,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import generator.BallsGenerator;
+import baseball.generator.BallsGenerator;
+import baseball.model.Balls;
+import baseball.model.BaseBallGame;
+import baseball.model.GameResult;
+import baseball.model.Status;
 
 class BaseBallGameTest {
 

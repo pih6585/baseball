@@ -1,4 +1,4 @@
-package model;
+package baseball.model;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -9,6 +9,9 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import baseball.model.GameResult;
+import baseball.model.Status;
 
 class GameResultTest {
 

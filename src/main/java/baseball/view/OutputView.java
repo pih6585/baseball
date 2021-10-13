@@ -1,6 +1,6 @@
-package view;
+package baseball.view;
 
-import model.GameResult;
+import baseball.model.GameResult;
 
 public class OutputView {
 

@@ -1,13 +1,13 @@
-package controller;
+package baseball.controller;
 
-import generator.BallsGenerator;
+import baseball.generator.BallsGenerator;
 
-import model.Balls;
-import model.BaseBallGame;
-import model.GameReStart;
-import model.GameResult;
-import view.InputView;
-import view.OutputView;
+import baseball.model.Balls;
+import baseball.model.BaseBallGame;
+import baseball.model.GameReStart;
+import baseball.model.GameResult;
+import baseball.view.InputView;
+import baseball.view.OutputView;
 
 public class Controller {
 

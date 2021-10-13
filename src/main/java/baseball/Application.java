@@ -1,4 +1,6 @@
-import controller.Controller;
+package baseball;
+
+import baseball.controller.Controller;
 
 public class Application {
 

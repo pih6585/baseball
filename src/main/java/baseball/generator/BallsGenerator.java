@@ -1,12 +1,12 @@
-package generator;
+package baseball.generator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import model.Ball;
-import model.Balls;
+import baseball.model.Ball;
+import baseball.model.Balls;
 
 public class BallsGenerator {
 

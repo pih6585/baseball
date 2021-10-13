@@ -1,4 +1,4 @@
-package model;
+package baseball.model;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,6 +7,9 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import baseball.model.Ball;
+import baseball.model.Balls;
 
 class BallsTest {
 
