@@ -15,9 +15,13 @@ public class Dice {
 	}
 
 	private void checkDiceRange(int dice) {
-		if(dice < MIN_DICE_NUMBER || dice > MAX_DICE_NUMBER){
+		if (dice < MIN_DICE_NUMBER || dice > MAX_DICE_NUMBER) {
 			throw new IllegalArgumentException(DICE_RANGE_ERROR_MESSAGE);
 		}
+	}
+
+	public int getDiceNumber() {
+		return dice;
 	}
 
 	@Override
@@ -34,4 +38,5 @@ public class Dice {
 	public int hashCode() {
 		return Objects.hash(dice);
 	}
+
 }
