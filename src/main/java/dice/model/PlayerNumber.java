@@ -10,17 +10,16 @@ public class PlayerNumber {
 	private static final String REGEX = "^\\d+$";
 	private static final int MIN_PLAYER_NUMBER = 2;
 	private static final int MAX_PLAYER_NUMBER = 4;
+	private static final int COUNT_NUMBER = 1;
 
 	private final int playerNumber;
-
-	public PlayerNumber(int playerNumber) {
-		this.playerNumber = playerNumber;
-	}
+	private int countNumber;
 
 	public PlayerNumber(String playerNumber) {
 		checkEmptyOrNull(playerNumber);
 		checkMatchType(playerNumber);
 		this.playerNumber = toInt(playerNumber);
+		countNumber = 0;
 	}
 
 	private int toInt(String playerNumber) {
@@ -45,7 +44,15 @@ public class PlayerNumber {
 		if (playerNumber == null || playerNumber.isEmpty()) {
 			throw new IllegalArgumentException(PLAYER_NUMBER_EMPTY_OR_NULL_ERROR_MESSAGE);
 		}
+	}
 
+	public boolean isNotFinish() {
+		addCountNumber();
+		return playerNumber != countNumber;
+	}
+
+	private void addCountNumber() {
+		countNumber += COUNT_NUMBER;
 	}
 
 	@Override
@@ -62,4 +69,5 @@ public class PlayerNumber {
 	public int hashCode() {
 		return Objects.hash(playerNumber);
 	}
+
 }
