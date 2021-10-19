@@ -19,6 +19,14 @@ public class PlayStatus {
 			.sum();
 	}
 
+	public boolean isHighScore(int highScore) {
+		return findTotalNumber() == highScore;
+	}
+
+	public Name getName() {
+		return name;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
