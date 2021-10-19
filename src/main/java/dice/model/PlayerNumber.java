@@ -47,11 +47,10 @@ public class PlayerNumber {
 	}
 
 	public boolean isNotFinish() {
-		addCountNumber();
 		return playerNumber != countNumber;
 	}
 
-	private void addCountNumber() {
+	public void addCountNumber() {
 		countNumber += COUNT_NUMBER;
 	}
 

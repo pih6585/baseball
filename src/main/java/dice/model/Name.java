@@ -19,21 +19,25 @@ public class Name {
 	}
 
 	private void checkMatchRegexp(String name) {
-		if(!name.matches(REG_EXP)){
+		if (!name.matches(REG_EXP)) {
 			throw new IllegalArgumentException(NAME_MATCH_CHECK_ERROR_MESSAGE);
 		}
 	}
 
 	private void checkNameLength(String name) {
-		if(name.length() > LIMIT_LENGTH){
+		if (name.length() > LIMIT_LENGTH) {
 			throw new IllegalArgumentException(NAME_LENGTH_LIMIT_OVER_ERROR_MESSAGE);
 		}
 	}
 
 	private void checkEmptyOrNull(String name) {
-		if(name == null || name.isEmpty()){
+		if (name == null || name.isEmpty()) {
 			throw new IllegalArgumentException(NAME_EMPTY_OR_NULL_ERROR_MESSAGE);
 		}
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	@Override
@@ -50,4 +54,5 @@ public class Name {
 	public int hashCode() {
 		return Objects.hash(name);
 	}
+
 }

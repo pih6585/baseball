@@ -1,5 +1,6 @@
 package dice.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,7 +11,7 @@ public class PlayStatus {
 
 	public PlayStatus(Name name, List<Dice> dices) {
 		this.name = name;
-		this.dices = dices;
+		this.dices = Collections.unmodifiableList(dices);
 	}
 
 	public int findTotalNumber() {
@@ -23,8 +24,12 @@ public class PlayStatus {
 		return findTotalNumber() == highScore;
 	}
 
-	public Name getName() {
-		return name;
+	public String getName() {
+		return name.getName();
+	}
+
+	public List<Dice> getDices() {
+		return dices;
 	}
 
 	@Override

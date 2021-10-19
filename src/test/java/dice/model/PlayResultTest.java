@@ -32,7 +32,7 @@ class PlayResultTest {
 	public void findWinners() {
 		PlayResult playResult = new PlayResult(getPlayStatus());
 
-		assertThat(playResult.findWinners()).containsExactly(new Name("lee"));
+		assertThat(playResult.findWinners()).containsExactly("lee");
 	}
 
 	private List<PlayStatus> getPlayStatus() {

@@ -9,6 +9,7 @@ import dice.model.PlayStatus;
 import dice.model.PlayerNumber;
 import dice.service.PlayGame;
 import dice.view.InputView;
+import dice.view.OutputView;
 
 public class Controller {
 
@@ -18,6 +19,9 @@ public class Controller {
 		List<PlayStatus> playStatuses = playDiceGame(playerNumber);
 
 		PlayResult playResult = new PlayResult(playStatuses);
+
+		OutputView.printPlayerStatus(playResult);
+		OutputView.printWinners(playResult);
 	}
 
 	private List<PlayStatus> playDiceGame(PlayerNumber playerNumber) {
@@ -25,6 +29,7 @@ public class Controller {
 		while (playerNumber.isNotFinish()) {
 			Name name = new Name(InputView.inputPlayerName());
 			playStatuses.add(PlayGame.play(name));
+			playerNumber.addCountNumber();
 		}
 		return playStatuses;
 	}

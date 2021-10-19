@@ -21,11 +21,15 @@ public class PlayResult {
 			.orElse(ZERO_POINT);
 	}
 
-	public List<Name> findWinners() {
+	public List<String> findWinners() {
 		return playResults.stream()
 			.filter(playStatus -> playStatus.isHighScore(findHighScore()))
 			.map(PlayStatus::getName)
 			.collect(Collectors.toList());
+	}
+
+	public List<PlayStatus> getPlayResults() {
+		return playResults;
 	}
 
 	@Override
